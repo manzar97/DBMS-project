@@ -1,0 +1,496 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hostel Management</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="">
+    <meta name="author" content="ThemeREX">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet'
+        type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
+    <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+
+</head>
+<style>
+    *{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html{
+	font-size: 15px;
+	font-family: "Roboto Cn", sans-serif;
+}
+
+a{
+	text-decoration: none;
+	color: #eee;
+}
+
+header{
+	width: 100%;
+	height: 30vh;
+	background: linear-gradient(to bottom, rgba(0,0,0,.8), rgba(0,0,0,.5)), url("https://images.unsplash.com/photo-1523374228107-6e44bd2b524e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80") center no-repeat;
+	background-size: cover;
+	position: relative;
+  overflow: hidden;
+}
+
+.container{
+	max-width: 120rem;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.menu-toggle{
+	position: fixed;
+	top: 2.5rem;
+	right: 2.5rem;
+	color: #eeeeee;
+	font-size: 3rem;
+	cursor: pointer;
+	z-index: 1000;
+	display: none;
+}
+
+nav{
+	padding-top: 5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-transform: uppercase;
+	font-size: 1.6rem;
+}
+
+.brand{
+	font-size: 3rem;
+	font-weight: 300;
+	transform: translateX(-100rem);
+	animation: slideIn .5s forwards;
+}
+
+.brand span{
+	color: crimson;
+}
+
+nav ul{
+	display: flex;
+}
+
+nav ul li{
+	list-style: none;
+	transform: translateX(100rem);
+	animation: slideIn .5s forwards;
+}
+
+nav ul li:nth-child(1){
+	animation-delay: 0s;
+}
+
+nav ul li:nth-child(2){
+	animation-delay: .5s;
+}
+
+nav ul li:nth-child(3){
+	animation-delay: 1s;
+}
+
+nav ul li:nth-child(4){
+	animation-delay: 1.5s;
+}
+
+nav ul li a{
+	padding: 1rem 0;
+	margin: 0 3rem;
+	position: relative;
+	letter-spacing: 2px;
+}
+
+nav ul li a:last-child{
+	margin-right: 0;
+}
+
+nav ul li a::before,
+nav ul li a::after{
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	background-color: crimson;
+	left: 0;
+	transform: scaleX(0);
+	transition: all .5s;
+}
+
+nav ul li a::before{
+	top: 0;
+	transform-origin: left;
+}
+
+nav ul li a::after{
+	bottom: 0;
+	transform-origin: right;
+}
+
+.overlay{
+	background-color: rgba(0,0,0,.95);
+	position: fixed;
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	transition: opacity 650ms;
+	transform: scale(0);
+	opacity: 0;
+  display: none;
+}
+
+nav ul li a:hover::before,
+nav ul li a:hover::after{
+	transform: scaleX(1);
+}
+
+@keyframes slideIn {
+	from{
+
+	}
+	to{
+		transform: translateX(0);
+	}
+}
+
+@media screen and (max-width: 100px){
+
+	.menu-toggle{
+		display: block;
+	}
+
+	nav{
+		padding-top: 0;
+		display: none;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+		height: 100vh;
+		text-align: center;
+	}
+
+	nav ul{
+		flex-direction: column;
+	}
+
+	nav ul li{
+		margin-top: 5rem;
+	}
+
+	nav ul li a{
+		margin: 0;
+		font-size: 2.5rem;
+	}
+
+	.brand{
+		font-size: 5rem;
+	}
+
+  .overlay.menu-open,
+  nav.menu-open{
+	  display: flex;
+	  transform: scale(1);
+	  opacity: 1;
+  }
+
+}
+</style>
+
+<body class="forms-layouts">
+
+    <div id="main">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<header>
+        <div class="menu-toggle" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="overlay"></div>
+        <div class="container">
+            <nav>
+                <h1 class="brand"><a href="/">Hostel <span>Allot</span>ment</a></h1>
+                <ul>
+                    <li><a href="/">Home</a></li>
+
+                </ul>
+            </nav>
+        </div>
+</header>
+
+	<br>
+        <br>
+        <br>
+        
+         {% if user.is_authenticated %}
+         {% if diff.is_student %}
+
+        <!-- Content for Student -->
+        <div id="content" class="animated fadeIn" style="background-color: #7CB9E8">
+
+            <h3 class="text-center mt10 mb25 fw400" style="margin-top: 75px;font-size:35px;color: black">  Welcome <strong style="color:#e60000">{{user.first_name}}</strong>  </h3>
+            <div class="row">
+                <div class="col-sm-6 col-lg-3" style="">
+                    <div class="bs-component">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" style="height: 25px;">
+                                <span class="panel-title" style="color:#0066cc"> View Details</span>
+                            </div>
+                            <div class="panel-body">
+                                <p><strong>Select to view the complete details of your room which includes your room number,
+                                    maximum capacity of the room and your roommates</strong> </br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5" style="background-color:#0066cc"><a href="{% url 'hostel:student_details'%}"  target="_blank" style="color:white">View</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-warning" >
+                            <div class="panel-heading">
+                                <span class="panel-title">Change Room Req</span>
+                            </div>
+                            <div class="panel-body">
+                                <p><strong>Select to proceed with sanctioning the change room request of the student with his /
+                                    her student details.</strong></br></p>
+                                <p></br><br></p>
+                                <div class="btn btn-default btn-lg mb5" style="background-color:#FF6A33"><a href="{% url 'hostel:change_req'%}"target="_blank" style="color:white">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-system">
+                            <div class="panel-heading">
+                                <span class="panel-title">Swap Room</span>
+                            </div>
+                            <div class="panel-body">
+                                <p><strong>Select to initiate the request of swap room where your request would be forwarded to
+                                    the student to whom you want to swap the room with.</strong></br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5" style="background-color:#6D5B88"><a href="{% url 'hostel:swap_req'%}" target="_blank" style="color:white">Request</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <span class="panel-title" style="color:#009973">Swap Room Ack.</span>
+                            </div>
+                            <div class="panel-body">
+                                <p><strong>Select to acknowledge a swap room request already initiated by another student to
+                                    swap room with you. It will then go to the admin.</strong></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5" style="background-color:#009973"><a href="{% url 'hostel:swap_ack'%}" target="_blank" style="color:white">View</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      {% else %}
+
+        <!-- Content for Hostel Accountant -->
+        <div id="content" class="animated fadeIn" style="background-color: #7CB9E8">
+
+            <h3 class="text-center mt10 mb25 fw400" style="margin-top: 75px;font-size:35px;color: black">  Welcome <strong style="color:#e60000">{{diff.user}} </strong></h3>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-success" style="box-shadow: 5px 5px #888888;box-sizing: border-box;">
+                            <div class="panel-heading">
+                                <span class="panel-title" style="color:#ff8080">Register New Student</span>
+                            </div>
+                            <div class="panel-body">
+                                <p><strong>Select to proceed and see the rooms which are vacant and the further number of
+                                    students that can be accommodated</strong></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"style="background-color:#ff8080"><a href="{% url 'hostel:register'%}" target="_blank" style="color:white">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-primary" style="box-shadow: 5px 5px #888888;box-sizing: border-box;">
+                            <div class="panel-heading">
+                                <span class="panel-title" style="color:#0066cc">Allocate Room</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Allot a new room to a student that hasn't been allotted a room already to the
+                                    student </br></br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5" style="background-color:#0066cc"><a href="{% url 'hostel:allocate'%}" target="_blank" style="color:white">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-warning" style="box-shadow: 5px 5px #888888;box-sizing: border-box;">
+                            <div class="panel-heading">
+                                <span class="panel-title">Change Room</span>
+
+
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to initiate the request to the administration to change your room to new room
+                                    from the room that is presently allotted to you.</br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5" style="background-color:#FF6A33"><a href="{% url 'hostel:change'%}" target="_blank" style="color:white">Request</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-system"style="box-shadow: 5px 5px #888888;box-sizing: border-box;">
+                            <div class="panel-heading">
+                                <span class="panel-title">Swap Room</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to proceed with sanctioning or declining the mutually agreed request of two
+                                    students to swap their rooms</br></p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5" style="background-color:#6D5B88"><a href="{% url 'hostel:swap'%}"target="_blank" style="color:white">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-success"style="box-shadow: 5px 5px #888888;box-sizing: border-box;">
+                            <div class="panel-heading">
+                                <span class="panel-title" style="color:#ff9966">Deallocate Batch</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to proceed and deallocate the rooms of all the students graduating in a
+                                    particular batch by entering their year of joining/batch year.</p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"style="background-color:#ff9966"><a href="{% url 'hostel:deallocate'%}" target="_blank" style="color:white">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-warnings"style="box-shadow: 5px 5px #888888;box-sizing: border-box;">
+                            <div class="panel-heading">
+                                <span class="panel-title" style="color:#ff668c">All Requests</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to proceed and see the list of all the students who have requested for the
+                                    room modifications and then grant or deny the requests.</p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5" style="background-color:#ff668c"><a href="{% url 'hostel:request'%}" target="_blank" style="color:white">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-success"style="box-shadow: 5px 5px #888888;box-sizing: border-box;">
+                            <div class="panel-heading">
+                                <span class="panel-title" style="color:#00b36b">All Vacant Rooms</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to proceed and see the rooms in the hostel which are vacant and the further
+                                    number of students that can be accommodated into the room</p>
+                                <p></br></p>
+                                <div class="btn btn-default btn-lg mb5" style="background-color:#00b36b"><a href="{% url 'hostel:vacant'%}" target="_blank" style="color:white">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="bs-component">
+                        <div class="panel panel-system" style="box-shadow: 5px 5px #888888;box-sizing: border-box;">
+                            <div class="panel-heading">
+                                <span class="panel-title">All Student Details</span>
+                            </div>
+                            <div class="panel-body">
+                                <p>Select to proceed to the page with all the students registered
+                                    and displays details including names, roll no, email and room no.</p>
+                                <p><br></p>
+                                <div class="btn btn-default btn-lg mb5" style="background-color:#72569F"><a href="{% url 'hostel:student'%}" target="_blank" style="color:white">Proceed</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endif %}
+        
+        <section id="content_wrapper">
+            <section id="content" class="table-layout animated fadeIn">
+            </section>
+    </div>
+
+    <style>
+        .allcp-form .panel.heading-border:before,
+        .allcp-form .panel .heading-border:before {
+            transition: all 0.7s ease;
+        }
+    </style>
+    <script>
+        var open = document.getElementById('hamburger');
+var changeIcon = true;
+
+open.addEventListener("click", function(){
+
+    var overlay = document.querySelector('.overlay');
+    var nav = document.querySelector('nav');
+    var icon = document.querySelector('.menu-toggle i');
+
+    overlay.classList.toggle("menu-open");
+    nav.classList.toggle("menu-open");
+
+    if (changeIcon) {
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-times");
+
+        changeIcon = false;
+    }
+    else {
+        icon.classList.remove("fa-times");
+        icon.classList.add("fa-bars");
+        changeIcon = true;
+    }
+});
+    </script>
+    <script src="http://alliance-html.themerex.net/assets/js/jquery/jquery-1.11.3.min.js"></script>
+    <script src="http://alliance-html.themerex.net/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+    <script src="http://alliance-html.themerex.net/assets/js/plugins/highcharts/highcharts.js"></script>
+
+    <script src="http://alliance-html.themerex.net/assets/allcp/forms/js/jquery-ui-monthpicker.min.js"></script>
+
+    <script src="http://alliance-html.themerex.net/assets/js/utility/utility.js"></script>
+    <script src="http://alliance-html.themerex.net/assets/js/demo/demo.js"></script>
+    <script src="http://alliance-html.themerex.net/assets/js/main.js"></script>
+    <script src="http://alliance-html.themerex.net/assets/js/demo/widgets_sidebar.js"></script>
+</body>
